@@ -1,0 +1,10 @@
+services:
+  bot:
+    build: .
+    container_name: community-translator-bot
+    env_file: .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+    restart: unless-stopped
