@@ -1,9 +1,0 @@
-services:
-  bot:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: production
-    env_file:
-      - .env.prod
-    restart: unless-stopped
