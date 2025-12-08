@@ -3,6 +3,7 @@ dist/
 .env
 .env.dev
 .env.local
+.env.prod
 .env.*.local
 logs/
 *.log
