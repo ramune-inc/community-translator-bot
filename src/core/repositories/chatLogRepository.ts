@@ -1,4 +1,4 @@
-import type { ChatLog } from "../entities/chatLog";
+import type { ChatLog } from "../entities/chatLog.js";
 
 export interface IChatLogRepository {
     save(chatLog: ChatLog): Promise<ChatLog>;

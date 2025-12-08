@@ -1,6 +1,6 @@
 import { Client, Message } from "discord.js";
-import { translateToEnglish, translateToJapanese } from "../core/translator";
-import type { IChatLogRepository } from "../core/repositories/chatLogRepository";
+import { translateToEnglish, translateToJapanese } from "../core/translator.js";
+import type { IChatLogRepository } from "../core/repositories/chatLogRepository.js";
 
 export function registerBotHandlers(client: Client, chatLogRepository: IChatLogRepository) {
     const JP_CHANNEL = process.env.JP_CHANNEL_ID!;

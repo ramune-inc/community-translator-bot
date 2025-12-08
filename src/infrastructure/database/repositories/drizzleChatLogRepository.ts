@@ -1,8 +1,8 @@
 import { desc, eq } from "drizzle-orm";
-import { db } from "../client";
-import { chatLogs, type ChatLogSelect } from "../schema";
-import type { ChatLog } from "../../../core/entities/chatLog";
-import type { IChatLogRepository } from "../../../core/repositories/chatLogRepository";
+import { db } from "../client.js";
+import { chatLogs, type ChatLogSelect } from "../schema.js";
+import type { ChatLog } from "../../../core/entities/chatLog.js";
+import type { IChatLogRepository } from "../../../core/repositories/chatLogRepository.js";
 
 export class DrizzleChatLogRepository implements IChatLogRepository {
     async save(chatLog: ChatLog): Promise<ChatLog> {
