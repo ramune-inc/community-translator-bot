@@ -1,7 +1,7 @@
 import "dotenv/config";
-import { createDiscordClient } from "./infrastructure/discord";
-import { registerBotHandlers } from "./app/bot";
-import { DrizzleChatLogRepository } from "./infrastructure/database/repositories/drizzleChatLogRepository";
+import { createDiscordClient } from "./infrastructure/discord.js";
+import { registerBotHandlers } from "./app/bot.js";
+import { DrizzleChatLogRepository } from "./infrastructure/database/repositories/drizzleChatLogRepository.js";
 
 async function main() {
     const client = createDiscordClient();
