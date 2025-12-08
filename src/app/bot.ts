@@ -25,7 +25,8 @@ export function registerBotHandlers(client: Client, chatLogRepository: IChatLogR
             const channel = await client.channels.fetch(EN_CHANNEL);
 
             if (channel?.isTextBased() && "send" in channel) {
-                await channel.send(`**${msg.author.username}:** ${translated}`);
+                const displayName = msg.member?.displayName ?? msg.author.username;
+                await channel.send(`**${displayName}:** ${translated}`);
             }
             return;
         }
@@ -46,7 +47,8 @@ export function registerBotHandlers(client: Client, chatLogRepository: IChatLogR
             const channel = await client.channels.fetch(JP_CHANNEL);
 
             if (channel?.isTextBased() && "send" in channel) {
-                await channel.send(`**${msg.author.username}:** ${translated}`);
+                const displayName = msg.member?.displayName ?? msg.author.username;
+                await channel.send(`**${displayName}:** ${translated}`);
             }
             return;
         }
