@@ -27,12 +27,17 @@ export function registerBotHandlers(client: Client, chatLogRepository: IChatLogR
 
                 if (channel?.isTextBased() && "send" in channel) {
                     const displayName = msg.member?.displayName ?? msg.author.username;
-                    await channel.send(`**${displayName}:** ${translated}`);
+                    await channel.send(`**${displayName}：** ${translated}`);
                 }
             } catch (error) {
                 console.error("[JP→EN] Translation/save error:", error);
-                // オプション: エラーをユーザーに通知
-                // await msg.react("❌");
+                // ユーザーにエラーを通知
+                try {
+                    await msg.react("⚠️");
+                    await msg.reply("翻訳中にエラーが発生しました。しばらくしてからもう一度お試しください。");
+                } catch (notifyError) {
+                    console.error("Failed to notify user:", notifyError);
+                }
             }
             return;
         }
@@ -55,12 +60,17 @@ export function registerBotHandlers(client: Client, chatLogRepository: IChatLogR
 
                 if (channel?.isTextBased() && "send" in channel) {
                     const displayName = msg.member?.displayName ?? msg.author.username;
-                    await channel.send(`**${displayName}:** ${translated}`);
+                    await channel.send(`**${displayName}：** ${translated}`);
                 }
             } catch (error) {
                 console.error("[EN→JP] Translation/save error:", error);
-                // オプション: エラーをユーザーに通知
-                // await msg.react("❌");
+                // ユーザーにエラーを通知
+                try {
+                    await msg.react("⚠️");
+                    await msg.reply("An error occurred during translation. Please try again later.");
+                } catch (notifyError) {
+                    console.error("Failed to notify user:", notifyError);
+                }
             }
             return;
         }
