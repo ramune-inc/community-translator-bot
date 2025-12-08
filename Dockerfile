@@ -21,7 +21,7 @@ RUN npm ci --only=production
 # dist と drizzle フォルダ、drizzle.meta をコピー
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/drizzle ./drizzle
-COPY --from=builder /app/src ./src   # migrate.js が dist にあるなら不要
+COPY --from=builder /app/src ./src
 COPY --from=builder /app/drizzle/meta ./drizzle/meta
 
 CMD ["npm", "run", "start"]
