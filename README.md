@@ -6,7 +6,6 @@ Discord サーバー内の日本語チャンネルと英語チャンネル間で
 
 - 日本語チャンネルのメッセージを英語チャンネルに翻訳
 - 英語チャンネルのメッセージを日本語チャンネルに翻訳
-- 投稿者名を保持した形式で翻訳メッセージを送信
 
 ## 技術スタック
 
@@ -33,8 +32,7 @@ DISCORD_TOKEN=xxxxx
 DEEPL_API_KEY=xxxxx
 JP_CHANNEL_ID=xxxxx
 EN_CHANNEL_ID=xxxxx
-SUPABASE_URL=xxxxx
-SUPABASE_ANON_KEY=xxxxx
+DATABASE_URL=xxxxx
 ```
 
 ### インストール
@@ -51,7 +49,7 @@ npm run build
 npm start
 ```
 
-### Docker を使用する場合
+### Docker を使用する場合（こっち使って欲しい）
 
 ```bash
 # コンテナを起動
@@ -60,20 +58,3 @@ docker compose up -d
 # ログを確認
 docker compose logs -f
 ```
-
-## プロジェクト構成
-
-```
-src/
-├── index.ts              # エントリーポイント
-├── app/
-│   └── bot.ts            # ボットのメッセージハンドラ
-├── core/
-│   └── translator.ts     # DeepL 翻訳ロジック
-└── infrastructure/
-    └── discord.ts        # Discord クライアント設定
-```
-
-## ライセンス
-
-なし
