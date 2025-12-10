@@ -1,4 +1,4 @@
-import { Client, Message, PartialMessage, TextChannel } from "discord.js";
+import { Client, Message, PartialMessage } from "discord.js";
 import { getEnv } from "../../config/env.js";
 import { translateByChannelType, getChannelType } from "../../translation/translationService.js";
 import { editViaWebhook } from "../../webhook/webhookSender.js";

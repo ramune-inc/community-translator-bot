@@ -1,4 +1,4 @@
-import { Message, Webhook, TextChannel, Attachment, APIMessage } from "discord.js";
+import { Message, TextChannel, Attachment } from "discord.js";
 import { markAsTranslated } from "../utils/loopPrevention.js";
 import { getOrCreateWebhook, getWebhookById } from "./webhookManager.js";
 
