@@ -2,6 +2,8 @@ import { Client } from "discord.js";
 import { createMessageCreateHandler } from "./messageCreate.js";
 import { createMessageUpdateHandler } from "./messageUpdate.js";
 import { createMessageDeleteHandler } from "./messageDelete.js";
+import { createReactionAddHandler } from "./reactionAdd.js";
+import { createReactionRemoveHandler } from "./reactionRemove.js";
 import type { IChatLogRepository } from "../repositories/chatLogRepository.js";
 import type { IMessageMirrorRepository } from "../repositories/messageMirrorRepository.js";
 
@@ -37,5 +39,20 @@ export function registerEventHandlers(
     );
     client.on("messageDelete", messageDeleteHandler);
 
+    // messageReactionAdd: リアクション追加の同期
+    const reactionAddHandler = createReactionAddHandler(
+        client,
+        messageMirrorRepository
+    );
+    client.on("messageReactionAdd", reactionAddHandler);
+
+    // messageReactionRemove: リアクション削除の同期
+    const reactionRemoveHandler = createReactionRemoveHandler(
+        client,
+        messageMirrorRepository
+    );
+    client.on("messageReactionRemove", reactionRemoveHandler);
+
     console.log("[EventHandler] All event handlers registered");
 }
+
