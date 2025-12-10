@@ -6,6 +6,9 @@ import { sql } from "drizzle-orm";
 export const createVectorExtension = sql`CREATE EXTENSION IF NOT EXISTS vector`;
 
 
+// ========================================
+// チャットログテーブル
+// ========================================
 export const chatLogs = pgTable("chat_logs", {
     id: serial("id").primaryKey(),
     discordUserId: varchar("discord_user_id", { length: 255 }).notNull(),
@@ -23,3 +26,31 @@ export const chatLogs = pgTable("chat_logs", {
 
 export type ChatLogInsert = typeof chatLogs.$inferInsert;
 export type ChatLogSelect = typeof chatLogs.$inferSelect;
+
+
+// ========================================
+// メッセージミラーテーブル
+// 翻訳元と翻訳先メッセージの紐付けを保存
+// 編集・削除の同期に使用
+// ========================================
+export const messageMirrors = pgTable("message_mirrors", {
+    id: serial("id").primaryKey(),
+    /** 元メッセージの Discord ID */
+    originalMessageId: varchar("original_message_id", { length: 255 }).notNull(),
+    /** ミラー先メッセージの Discord ID */
+    mirroredMessageId: varchar("mirrored_message_id", { length: 255 }).notNull(),
+    /** 元チャンネル ID */
+    originalChannelId: varchar("original_channel_id", { length: 255 }).notNull(),
+    /** ミラー先チャンネル ID */
+    mirroredChannelId: varchar("mirrored_channel_id", { length: 255 }).notNull(),
+    /** 使用した Webhook の ID */
+    webhookId: varchar("webhook_id", { length: 255 }).notNull(),
+    /** 作成日時 */
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+}, (table) => [
+    index("idx_message_mirrors_original").on(table.originalMessageId),
+    index("idx_message_mirrors_mirrored").on(table.mirroredMessageId),
+]);
+
+export type MessageMirrorInsert = typeof messageMirrors.$inferInsert;
+export type MessageMirrorSelect = typeof messageMirrors.$inferSelect;

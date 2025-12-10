@@ -8,6 +8,13 @@
       "when": 1764956669495,
       "tag": "0000_soft_tyger_tiger",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1765384256535,
+      "tag": "0001_stormy_zombie",
+      "breakpoints": true
     }
   ]
 }
